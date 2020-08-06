@@ -11,4 +11,23 @@ const moviesMock = [
 {"id":"026d8e08-7648-4dbf-9191-c62ee28f09b7","title":"Catfish","year":2003,"cover":"http://dummyimage.com/234x221.bmp/cc0000/ffffff","description":"Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.","duration":98,"contentRating":null,"source":"http://g.co/rutrum/nulla/tellus.json","tags":["Drama","Action|Drama|Thriller","Action|Adventure|Comedy","Comedy|Drama|Romance","Crime|Horror|Mystery|Thriller"]}
 ]
 
-module.exports = { moviesMock }
+function filteredMoviesMock(tag) {
+    return moviesMock.filter(movie => movie.tags.includes(tag))
+}
+
+class MoviesServiceMock {
+    async getMovies() {
+        return Promise.resolve(moviesMock)
+    }
+
+    async createMovie() {
+        return Promise.resolve(moviesMock[0])
+    }
+}
+
+
+module.exports = { 
+    moviesMock,
+    filteredMoviesMock,
+    MoviesServiceMock 
+}
